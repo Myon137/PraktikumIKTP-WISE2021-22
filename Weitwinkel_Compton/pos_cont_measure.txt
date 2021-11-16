@@ -1,0 +1,6 @@
+abstand yz Ebene x in cm: -33
+tiefste Höhe z in cm: 7
+Halbkreisradius r in cm: 13
+halbkreisorientierung: links
+Anzahl Halbkreispunkte: 12
+Wartezeit an Halbkreispunkten: 5 sek.
