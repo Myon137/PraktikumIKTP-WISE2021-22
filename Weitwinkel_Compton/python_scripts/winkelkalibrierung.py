@@ -25,7 +25,7 @@ for i in range(0, len(data)):
 
 ### FILTER SETTINGS
 data_filter_m = -357.0/544.0 # delta y / delta x
-data_filter_n_low = 320.0
+data_filter_n_low = 310.0
 data_filter_n_high = 410.0
 ### END FILTER SETTINGS
 
@@ -46,22 +46,31 @@ for i in range(0, len(data)):
 # find error
 
 ### ERROR FILTER SETTINGS
-margin = 0.95   # fraction of the data points inside error boundaries
-initial_n_shift = 1.0
-max_error = 10e-4 # max. allowed difference from margin
+margin = 0.8   # fraction of the data points inside error boundaries
+initial_n_shift = 50.0
+max_error = 10e-5 # max. allowed difference from margin
 ### END ERROR FILTER SETTINGS
 
 # assuming error boundaries are parallel to regression line and same distance from it.
 
+n_shift_array = []
+
 for i in range(0, len(data)):
     n_shift = initial_n_shift
+    n_shift_shift = initial_n_shift
     error = np.inf
-    line_part_err = data[i][1] - (data_filter_m * data[i][0])
+    line_part_err = filtered_data[i][1] - (reg_results[i].slope * filtered_data[i][0])
+
     while True:
-        filter_err = np.logical_and(line_part > data_filter_n_low, line_part < data_filter_n_high)
-        ponts_in_boundaries = filtered_data[i][:, ]
-        if (error <= max_error):
+        filter_err = np.logical_and(line_part_err > reg_results[i].intercept-n_shift, line_part_err < reg_results[i].intercept+n_shift)
+        error = margin - (np.sum(filter_err) / len(filtered_data[i][0]))
+        if (np.abs(error) <= max_error):
+            n_shift_array.append(n_shift)
             break
+        else:
+            if np.sign(error) != np.sign(n_shift_shift):
+                n_shift_shift *= -0.5
+            n_shift += n_shift_shift
 
 # %%
 # Plot
@@ -89,7 +98,9 @@ for i in range(0, len(data)):
     axes[x_idx][y_idx].plot([0, -(data_filter_n_low/data_filter_m)], [data_filter_n_low, 0], color = "plum", label = "filter lower bound")
     axes[x_idx][y_idx].plot([0, -(data_filter_n_high/data_filter_m)], [data_filter_n_high, 0], color = "thistle", label = "filter upper bound")
     axes[x_idx][y_idx].plot([0, -(reg_results[i].intercept / reg_results[i].slope)], [reg_results[i].intercept, 0], color = "greenyellow", label="linear fit")
-    axes[x_idx][y_idx].title.set_text(r"$x = 0$ intercept: ${inter:.2f}$".format(inter = reg_results[i].intercept))
+    axes[x_idx][y_idx].plot([0, -((reg_results[i].intercept+n_shift_array[i]) / reg_results[i].slope)], [(reg_results[i].intercept+n_shift_array[i]), 0], color = "lime", label="error range")
+    axes[x_idx][y_idx].plot([0, -((reg_results[i].intercept-n_shift_array[i]) / reg_results[i].slope)], [(reg_results[i].intercept-n_shift_array[i]), 0], color = "lime")
+    axes[x_idx][y_idx].title.set_text(r"$x = 0$ intercept: ${inter:.3f}$, error: ${err:.3f}$".format(inter = reg_results[i].intercept, err = 2.0*n_shift_array[i]))
     axes[x_idx][y_idx].legend(loc = "best")
 
 plt.show()
