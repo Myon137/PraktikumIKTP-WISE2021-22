@@ -1,0 +1,51 @@
+\section{Kalibirierung des Szintilators}
+
+
+
+\subsection{Vergleich der Detektorspektren}
+
+Im ersten Schritt wurden die Spektren mehrerer Quellen für den Szintilator, wie auch den Ge-Detektor, aufgenommen udn die Ergebnisse verglichen.
+Genutzt wurden hierfür eine $^{22 }$Na und eine $^{133 }$Ba Probe.
+Die Messzeit betrug für $^{22 }$Na 5 min und für $^{133 }$Ba 4min, aufgrund der geringeren Aktivität der Probe. 
+Eine Messung der Untergrundstrahlung wurde nicht durchgeführt, da sie für den einfachen Vergleich zweier Spektren auch nicht notwendig wäre.
+Wie in Abb. \ref{NaGe} und \ref{NaSzin} zu sehen ist, war die Aktivität der $^{22 }$Na Probe recht niedrig.
+Im Ge-Spektrum lässt sich prinzipiel ein stark ausgeprägter Peak, zwischen den Kanälen 500 und 600, erkennen, das Compton-Kontinuum ist jedoch recht verschwommen.
+Das Szintilator-Spektrum wiederrum scheint hier unbrauchbar. 
+Es lässt sich nur ungefähr der Bereich des Comtpon-Kontinuums erahnen.
+Eine kalbrierung mithilfe dieser Probe sollte nur schwer möglich sein, da für den Ge-Detektor mehrere Peaks notwendig wären und das Szintilator-Spektrum einfach zu schwach ausgeprägt ist.
+Prinzipiell könnten die Spektren mit einer längeren Messzeit verbessert werden,in diesem Versuch standen jedoch mehrere Proben zur Auswahl, weshalb dies nicht gemacht wurde.
+
+\begin{figure}[h]
+\minipage{0.5\textwidth}
+  \includegraphics[width=\linewidth]{Na22ge.png}
+  \caption{Ge-Detektor}
+  \label{NaGe}
+\endminipage\hfill
+\minipage{0.5\textwidth}
+  \includegraphics[width=\linewidth]{Na22szin.png}
+  \caption{Szintilator}
+  \label{NaSzin}
+\endminipage\hfill
+\end{figure}
+
+Die $^{133 }$Ba Probe besaß eine im Vergleich dazu deutlich stärkere Aktivität, was sich positiv auf die Spektren (\ref{BaGe} und \ref{BaSzin}) ausgewirkt hat.
+Im Spektrum des Ge-Detektors lassen sich jetzt mehrere Peaks deutlich erkennen.
+Eine Kalibirierung anhand dieser sollte jetzt möglich sein.
+Das Szintilator Spektrum dieser Probe wird, wie  zu erwarten war, vom Compton-Kontinuum dominiert.
+Die Compton-Kante ist hierbei schwach ausgeprägt, was eine herkömliche Kalbirierung, wieder wie zu erwarten, erschweren würde.
+Eine längere Messzeit oder Beseitigung der Untergrundstrahlung, würde hier jedoch möglicherweise aushelfen können.
+Aufällig ist außerdem ein recht stark ausgeprägter Peak im niedrigenergetischen Bereich (ungefähr bei Kanal 50).
+Hierbei könnte es sich um einen stark ausgeprägten Rückstreupeak handeln.
+
+\begin{figure}[h]
+\minipage{0.5\textwidth}
+  \includegraphics[width=\linewidth]{ba133Ge.png}
+  \caption{Ge-Detektor}
+  \label{BaGe}
+\endminipage\hfill
+\minipage{0.5\textwidth}
+  \includegraphics[width=\linewidth]{ba133Szin.png}
+  \caption{Szintilator}
+  \label{BaSzin}
+\endminipage\hfill
+\end{figure}
